@@ -23,8 +23,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_above="@id/about_btn"
-        android:clickable="true">
+        android:layout_above="@id/about_btn">
     </Button>
 
     <Button
