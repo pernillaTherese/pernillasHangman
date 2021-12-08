@@ -1,11 +1,17 @@
 package com.pernillatherese.hangman;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,20 +24,24 @@ public class PlayActivity extends AppCompatActivity {
     AnimationDrawable firstAnimation;
     String selectedWord;
 
-    //views
+    //views - buttons
     ImageView animView;
+    TextView countDownTV;
     TextView correctWordTV;
     TextView guessedTV;
+    Button newGameBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
-        //views
+        //Find views - buttons
         animView = findViewById(R.id.anim_view);
+        countDownTV = findViewById(R.id.countdown_txt);
         correctWordTV = findViewById(R.id.correct_word_txt);
         guessedTV = findViewById(R.id.guessed_letters_txt);
+        newGameBtn = findViewById(R.id.new_game_btn);
 
         //get random word
         randomWord();
@@ -41,24 +51,13 @@ public class PlayActivity extends AppCompatActivity {
         animView.setBackgroundResource(R.drawable.first_animation);
         firstAnimation = (AnimationDrawable) animView.getBackground();
 
-        //Kod för att läsa in hela filen. men jag vill ju få ett random ord. //TODO: Can prob. remove this
-        /*readBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String text = "";
-                try {
-                    InputStream is = getAssets().open("wordList_eng.txt");
-                    int size = is.available();
-                    byte[] buffer = new byte(size);
-                    is.read(buffer);
-                    is.close();
-                    text = new String(buffer);
-                }catch(IOException ex) {
-                    ex.printStackTrace();
-                }
-                tillfText.setText(text);
+        //Start new game (recreate PlayActivity)
+        newGameBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), PlayActivity.class);
+                startActivity(intent);
             }
-        });*/
+        });
     }
 
     // animation - switch between pictures
