@@ -23,6 +23,7 @@ public class PlayActivity extends AppCompatActivity {
     //vars
     AnimationDrawable firstAnimation;
     String selectedWord;
+    String underscoredWord;
 
     //views - buttons
     ImageView animView;
@@ -45,7 +46,7 @@ public class PlayActivity extends AppCompatActivity {
 
         //get random word
         randomWord();
-        correctWordTV.setText(selectedWord);
+        correctWordTV.setText(underscoredWord);
 
         //Animation //TODO: Make it play when guess is wrong
         animView.setBackgroundResource(R.drawable.first_animation);
@@ -81,6 +82,13 @@ public class PlayActivity extends AppCompatActivity {
 
             Random rand = new Random();
             selectedWord = words.get(rand.nextInt(words.size()));
+
+            //make word show only underscores
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i<selectedWord.length(); i++) {
+                sb.append("_");
+            }
+            underscoredWord = sb.toString();
 
         } catch (IOException e) {
             e.printStackTrace();
