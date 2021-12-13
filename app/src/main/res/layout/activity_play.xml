@@ -34,7 +34,8 @@
 
     <TextView
         android:id="@+id/correct_word_txt"
-        android:text="WORD"
+        android:text="word"
+        android:textAllCaps="true"
         android:textSize="25sp"
         android:letterSpacing="0.2"
         android:textAlignment="center"
@@ -50,7 +51,7 @@
 
     <TextView
         android:id="@+id/guessed_letters_txt"
-        android:textSize="40sp"
+        android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/correct_word_txt"
@@ -74,25 +75,33 @@
 
     </Button>
 
-    <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/letters_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        app:constraint_referenced_ids="a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,ao,ae,oe"
-        app:flow_wrapMode="aligned"
-        app:layout_constraintBottom_toTopOf="@id/new_game_btn"
-        app:layout_constraintTop_toBottomOf="@id/guessed_letters_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/letters_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/new_game_btn"
+            app:layout_constraintTop_toBottomOf="@id/guessed_letters_txt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
 
+            <androidx.constraintlayout.helper.widget.Flow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:padding="16dp"
+                app:constraint_referenced_ids="a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,ao,ae,oe"
+                app:flow_wrapMode="aligned"/>
 
             <TextView
                 android:id="@+id/a"
+                android:background="@color/purple_500"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -298,5 +307,6 @@
                 android:padding="10dp"
                 android:text="Ö"/>
 
+         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
