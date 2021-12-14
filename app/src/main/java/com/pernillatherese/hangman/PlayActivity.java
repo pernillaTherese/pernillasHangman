@@ -8,6 +8,9 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,7 +26,7 @@ import java.util.Scanner;
 public class PlayActivity extends AppCompatActivity {
 
     //vars
-    AnimationDrawable firstAnimation;
+    AnimationDrawable animation;
     private String selectedWord;
     private String underscoredWord;
     private char guessedLetter;
@@ -46,7 +49,6 @@ public class PlayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
-
         //Find views - buttons
         animView = findViewById(R.id.anim_view);
         countDownTV = findViewById(R.id.countdown_txt);
@@ -62,17 +64,16 @@ public class PlayActivity extends AppCompatActivity {
         //Play game
         play();
 
+        //Animation
+        animView.setBackgroundResource(R.drawable.second_animation);
+        animation = (AnimationDrawable) animView.getBackground();
 
-        //Animation //TODO: Make it play when guess is wrong
-        animView.setBackgroundResource(R.drawable.first_animation);
-        firstAnimation = (AnimationDrawable) animView.getBackground();
 
         //Start new game (recreate PlayActivity)
         newGameBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), PlayActivity.class);
                 startActivity(intent);
-
             }
         });
     }
@@ -97,6 +98,10 @@ public class PlayActivity extends AppCompatActivity {
                         if (guessedLetter == selectedWord.toUpperCase().charAt(i)) {
                             underscoredWordList.set(i, guessedLetter);
                             correctWordTV.setText(TextUtils.join("", underscoredWordList));
+                        }else{
+                            animView.setBackgroundResource(R.drawable.first_animation);
+                            animation = (AnimationDrawable) animView.getBackground();
+                            onWindowFocusChanged(true);
                         }
                     }
                 }
@@ -111,8 +116,9 @@ public class PlayActivity extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        firstAnimation.start();
+        animation.start();
     }
+
 
     //get random word from in app storage .txt-file
     public void randomWord() {
