@@ -1,6 +1,5 @@
 package com.pernillatherese.hangman;
 
-import androidx.annotation.ColorRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -14,11 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
@@ -29,11 +26,12 @@ public class PlayActivity extends AppCompatActivity {
     AnimationDrawable firstAnimation;
     private String selectedWord;
     private String underscoredWord;
-    private String guessedLetter;
+    private char guessedLetter;
     private int noOfGuesses =10;
     boolean rightLetter;
-    private ArrayList<Character> rightWord = new ArrayList<>();
-    private ArrayList<String> guessedLetters = new ArrayList<>();
+    private ArrayList<Character> rightWordList = new ArrayList<>();
+    private ArrayList<Character> guessedLetters = new ArrayList<>();
+    private ArrayList<Character> underscoredWordList = new ArrayList<>();
 
     //views - buttons
     private ImageView animView;
@@ -59,10 +57,10 @@ public class PlayActivity extends AppCompatActivity {
 
         //Set up game board
         randomWord();
-        keyboardSetting();
         correctWordTV.setText(underscoredWord);
 
-        //Play
+        //Play game
+        play();
 
 
         //Animation //TODO: Make it play when guess is wrong
@@ -79,31 +77,28 @@ public class PlayActivity extends AppCompatActivity {
         });
     }
 
-    //Keyboard settings
-    //TODO: consider mark them instead of disappearing
-    public void keyboardSetting() {
+    //Play the game - Guess letters
+    public void play() {
 
-        //List<View> letterViews = new ArrayList<>();
+        //Make keys clickable and clicked letters disappear from keyboard
         for (int i = 1; i<(keyboard.getChildCount()); i++) {
-
-            //View letterView = keyboard.getChildAt(i);
             TextView letterView = (TextView) keyboard.getChildAt(i);
-
-            //Make keys clickable and clicked letters disappear from keyboard
             letterView.setOnClickListener(new View.OnClickListener(){
-                public void onClick(View view) {
-                    guessedLetter = letterView.getText().toString();
-                    guessedLetters.add(guessedLetter);
-                    guessedTV.setText(TextUtils.join(", ", guessedLetters));
+
+                    public void onClick(View view) {
+                    guessedLetter = letterView.getText().charAt(0);
                     letterView.setVisibility(View.GONE);
 
-                    /*if (rightLetter) {
-                        Toast.makeText(getApplicationContext(), "Rätt bokstav", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(getApplicationContext(), "Fel bokstav", Toast.LENGTH_SHORT).show();
-                    }*/
+                    //Make guessed letter add to guessedLetters TextView
+                    guessedLetters.add(guessedLetter);
+                    guessedTV.setText(TextUtils.join(", ", guessedLetters));
 
-
+                    for(int i=0; i<underscoredWordList.size(); i++){
+                        if (guessedLetter == selectedWord.toUpperCase().charAt(i)) {
+                            underscoredWordList.set(i, guessedLetter);
+                            correctWordTV.setText(TextUtils.join("", underscoredWordList));
+                        }
+                    }
                 }
 
             });
@@ -111,12 +106,6 @@ public class PlayActivity extends AppCompatActivity {
 
     }
 
-    // play
-    /*public void play() {
-        StringBuilder sb = new StringBuilder();
-        guessedTV.setText(guessedLetter);
-        //guessedTV.setText(sb.append(guessedLetter));
-    }*/
 
     // animation - switch between pictures
     @Override
@@ -146,13 +135,11 @@ public class PlayActivity extends AppCompatActivity {
                 sb.append("_");
             }
 
-            //make list of characters
-            for(int i=0; i<selectedWord.length(); i++) {
-                rightWord.add(selectedWord.charAt(i));
-                //Toast.makeText(getApplicationContext(), rightWord.get(i).toString(), Toast.LENGTH_SHORT).show(); Arrayen funkar!
-            }
+            //make list of underscored word
             underscoredWord = sb.toString();
-
+            for(int i=0; i<underscoredWord.length(); i++) {
+                underscoredWordList.add(underscoredWord.charAt(i));
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
