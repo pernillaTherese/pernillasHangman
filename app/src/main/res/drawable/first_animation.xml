@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+<animation-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
 
     <item
-        android:drawable="@drawable/first_border_01"
+        android:drawable="@drawable/anim_01_01"
         android:duration="400"/>
 
     <item
-        android:drawable="@drawable/first_border_02"
+        android:drawable="@drawable/anim_01_02"
         android:duration="400"/>
 
     <item
-        android:drawable="@drawable/first_border_03"
-        android:duration="400"/>
-
-    <item
-        android:drawable="@drawable/first_border_04"
-        android:duration="400"/>
+        android:drawable="@drawable/anim_01_03"
+        android:duration ="400"/>
 
 
 </animation-list>

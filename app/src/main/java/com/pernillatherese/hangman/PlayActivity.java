@@ -64,9 +64,11 @@ public class PlayActivity extends AppCompatActivity {
         //Play game
         play();
 
-        //Animation
-        animView.setBackgroundResource(R.drawable.second_animation);
-        animation = (AnimationDrawable) animView.getBackground();
+        //First Background
+        //TODO: Fix background image
+        animView.setBackgroundResource(R.drawable.bakgrund);
+        //animView.setBackgroundResource(R.drawable.first_animation);
+        //animation = (AnimationDrawable) animView.getBackground();
 
 
         //Start new game (recreate PlayActivity)
@@ -101,7 +103,7 @@ public class PlayActivity extends AppCompatActivity {
                         }else{
                             animView.setBackgroundResource(R.drawable.first_animation);
                             animation = (AnimationDrawable) animView.getBackground();
-                            onWindowFocusChanged(true);
+                            animation.start();
                         }
                     }
                 }
@@ -113,11 +115,11 @@ public class PlayActivity extends AppCompatActivity {
 
 
     // animation - switch between pictures
-    @Override
+    /*@Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         animation.start();
-    }
+    }*/
 
 
     //get random word from in app storage .txt-file
