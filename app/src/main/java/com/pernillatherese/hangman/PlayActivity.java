@@ -66,7 +66,7 @@ public class PlayActivity extends AppCompatActivity {
 
         //First Background
         //TODO: Fix background image
-        animView.setBackgroundResource(R.drawable.bakgrund);
+        animView.setBackgroundResource(R.drawable.play_background);
         //animView.setBackgroundResource(R.drawable.first_animation);
         //animation = (AnimationDrawable) animView.getBackground();
 

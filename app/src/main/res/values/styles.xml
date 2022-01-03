@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style
+        name="key_text"
+        parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:background">@color/sky_light</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/background_color</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
+    <style
+        name="button_light"
+        parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="backgroundTint">@color/mountain_light</item>
+        <item name="android:textColor">@color/background_color</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
+    <style
+        name="button_dark"
+        parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="backgroundTint">@color/mountain_dark</item>
+        <item name="android:textColor">@color/background_color</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+</resources>
