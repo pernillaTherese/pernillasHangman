@@ -8,18 +8,14 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -30,11 +26,24 @@ public class PlayActivity extends AppCompatActivity {
     private String selectedWord;
     private String underscoredWord;
     private char guessedLetter;
-    private int noOfGuesses =10;
-    boolean rightLetter;
+    private int noOfFailure =7;
+    private boolean correctWord;
+    private boolean rightLetter;
     private ArrayList<Character> rightWordList = new ArrayList<>();
     private ArrayList<Character> guessedLetters = new ArrayList<>();
     private ArrayList<Character> underscoredWordList = new ArrayList<>();
+
+    //vars animations
+    private final int anim_a = R.drawable.anim_a;
+    private final int anim_b = R.drawable.anim_b;
+    private final int anim_c = R.drawable.anim_c;
+    private final int anim_d = R.drawable.anim_d;
+    private final int anim_e = R.drawable.anim_e;
+    private final int anim_f = R.drawable.anim_f;
+    private final int anim_g = R.drawable.anim_g;
+    private final ArrayList<Integer> animList = new ArrayList<>(Arrays.asList
+            (anim_a, anim_b, anim_c,anim_d, anim_e, anim_f, anim_g));
+
 
     //views - buttons
     private ImageView animView;
@@ -60,16 +69,7 @@ public class PlayActivity extends AppCompatActivity {
         //Set up game board
         randomWord();
         correctWordTV.setText(underscoredWord);
-
-        //Play game
-        play();
-
-        //First Background
-        //TODO: Fix background image
-        animView.setBackgroundResource(R.drawable.play_background);
-        //animView.setBackgroundResource(R.drawable.first_animation);
-        //animation = (AnimationDrawable) animView.getBackground();
-
+        animView.setImageResource(R.drawable.play_background);
 
         //Start new game (recreate PlayActivity)
         newGameBtn.setOnClickListener(new View.OnClickListener() {
@@ -78,49 +78,66 @@ public class PlayActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //Play game
+        playGame();
     }
 
-    //Play the game - Guess letters
-    public void play() {
+/*    public void playGame() {
+        while(true) {
+            guessLetters();
+            if(replaceLetters()) {
+                break;
+            }
+        }
+    }*/
+    public void playGame() {
+        guessLetters();
+    }
+
+    //Guess letters
+    public void guessLetters() {
 
         //Make keys clickable and clicked letters disappear from keyboard
-        for (int i = 1; i<(keyboard.getChildCount()); i++) {
+        for (int i = 1; i < (keyboard.getChildCount()); i++) {
             TextView letterView = (TextView) keyboard.getChildAt(i);
-            letterView.setOnClickListener(new View.OnClickListener(){
+            letterView.setOnClickListener(new View.OnClickListener() {
 
-                    public void onClick(View view) {
+                public void onClick(View view) {
                     guessedLetter = letterView.getText().charAt(0);
                     letterView.setVisibility(View.GONE);
 
                     //Make guessed letter add to guessedLetters TextView
                     guessedLetters.add(guessedLetter);
                     guessedTV.setText(TextUtils.join(", ", guessedLetters));
-
-                    for(int i=0; i<underscoredWordList.size(); i++){
-                        if (guessedLetter == selectedWord.toUpperCase().charAt(i)) {
-                            underscoredWordList.set(i, guessedLetter);
-                            correctWordTV.setText(TextUtils.join("", underscoredWordList));
-                        }else{
-                            animView.setBackgroundResource(R.drawable.first_animation);
-                            animation = (AnimationDrawable) animView.getBackground();
-                            animation.start();
-                        }
-                    }
+                    replaceLetters();
                 }
-
             });
         }
 
     }
 
+    //Show correctly guessed letters
+    public boolean replaceLetters() {
 
-    // animation - switch between pictures
-    /*@Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        animation.start();
-    }*/
+        //Make correctly guessed letter replace underscore in correctWordTV
+        int letterCount = 0;
+        for(int j=0; j<underscoredWordList.size(); j++){
 
+            if (guessedLetter == selectedWord.toUpperCase().charAt(j)) {
+                underscoredWordList.set(j, guessedLetter);
+                correctWordTV.setText(TextUtils.join("", underscoredWordList));
+                letterCount++;
+                Toast.makeText(PlayActivity.this, "toast" + letterCount, Toast.LENGTH_SHORT).show();
+            }else{
+                animView.setImageResource(animList.get(0));
+            }
+        }
+        if (letterCount == selectedWord.length()) {
+            correctWord = true;
+        }
+        return selectedWord.length() == letterCount;
+    }
 
     //get random word from in app storage .txt-file
     public void randomWord() {

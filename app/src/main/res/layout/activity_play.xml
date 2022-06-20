@@ -9,16 +9,15 @@
     android:background="@color/background_color">
 
 
-    <ImageView
+    <pl.droidsonroids.gif.GifImageView
         android:id="@+id/anim_view"
         android:layout_width="match_parent"
         android:layout_height="240dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBaseline_toTopOf="@id/correct_word_txt">
-
-    </ImageView>
+        app:layout_constraintBaseline_toTopOf="@id/correct_word_txt"/>
 
     <TextView
         android:id="@+id/countdown_txt"
