@@ -28,7 +28,6 @@ public class PlayActivity extends AppCompatActivity {
     private char guessedLetter;
     private int noOfFailure =7;
     private boolean correctWord;
-    private boolean rightLetter;
     private ArrayList<Character> rightWordList = new ArrayList<>();
     private ArrayList<Character> guessedLetters = new ArrayList<>();
     private ArrayList<Character> underscoredWordList = new ArrayList<>();
@@ -93,9 +92,10 @@ public class PlayActivity extends AppCompatActivity {
     }*/
     public void playGame() {
         guessLetters();
+
     }
 
-    //Guess letters
+    //Guess letters and put them to List of guessed letters
     public void guessLetters() {
 
         //Make keys clickable and clicked letters disappear from keyboard
@@ -110,33 +110,29 @@ public class PlayActivity extends AppCompatActivity {
                     //Make guessed letter add to guessedLetters TextView
                     guessedLetters.add(guessedLetter);
                     guessedTV.setText(TextUtils.join(", ", guessedLetters));
-                    replaceLetters();
+                    if(!replaceLetters()) {
+                        animView.setImageResource(animList.get(0));
+                    }
                 }
             });
         }
 
     }
 
-    //Show correctly guessed letters
+    //Check if guessed letter is correct and replace underscore with correct letter.
     public boolean replaceLetters() {
-
+        boolean correctLetter = false;
         //Make correctly guessed letter replace underscore in correctWordTV
-        int letterCount = 0;
         for(int j=0; j<underscoredWordList.size(); j++){
 
             if (guessedLetter == selectedWord.toUpperCase().charAt(j)) {
                 underscoredWordList.set(j, guessedLetter);
                 correctWordTV.setText(TextUtils.join("", underscoredWordList));
-                letterCount++;
-                Toast.makeText(PlayActivity.this, "toast" + letterCount, Toast.LENGTH_SHORT).show();
-            }else{
-                animView.setImageResource(animList.get(0));
+                correctLetter = true;
+                Toast.makeText(PlayActivity.this, "toast" + correctLetter, Toast.LENGTH_SHORT).show();
             }
         }
-        if (letterCount == selectedWord.length()) {
-            correctWord = true;
-        }
-        return selectedWord.length() == letterCount;
+        return correctLetter;
     }
 
     //get random word from in app storage .txt-file
