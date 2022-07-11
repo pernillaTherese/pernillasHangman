@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -22,14 +21,13 @@ import java.util.Scanner;
 public class PlayActivity extends AppCompatActivity {
 
     //vars
-    AnimationDrawable animation;
+    private int countDown = 0;
     private String selectedWord;
     private String underscoredWord;
     private char guessedLetter;
     private int wrongGuess = 0;
-    private int maxWrongGuess =7;
+    private final int maxWrongGuess =7;
     private boolean correctWord;
-    private ArrayList<Character> rightWordList = new ArrayList<>();
     private ArrayList<Character> guessedLetters = new ArrayList<>();
     private ArrayList<Character> underscoredWordList = new ArrayList<>();
 
@@ -69,6 +67,7 @@ public class PlayActivity extends AppCompatActivity {
         //Set up game board
         randomWord();
         correctWordTV.setText(underscoredWord);
+        countDownTV.setText(countDown + "/" + maxWrongGuess);
         animView.setImageResource(R.drawable.play_background);
 
         //Start new game (recreate PlayActivity)
@@ -83,21 +82,8 @@ public class PlayActivity extends AppCompatActivity {
         playGame();
     }
 
-/*    public void playGame() {
-        while(true) {
-            guessLetters();
-            if(replaceLetters()) {
-                break;
-            }
-        }
-    }*/
-    public void playGame() {
-        guessLetters();
-
-    }
-
     //Guess letters and put them to List of guessed letters
-    public void guessLetters() {
+    public void playGame() {
         //Make keys clickable and clicked letters disappear from keyboard
         for (int i = 1; i < (keyboard.getChildCount()); i++) {
             TextView letterView = (TextView) keyboard.getChildAt(i);
@@ -111,12 +97,15 @@ public class PlayActivity extends AppCompatActivity {
                     //Make guessed letter add to guessedLetters TextView
                     guessedLetters.add(guessedLetter);
                     guessedTV.setText(TextUtils.join(", ", guessedLetters));
-                    if(!replaceLetters()) {
+
+                    //If guess is wrong
+                    if(!checkGuess()) {
 
                         animView.setImageResource(animList.get(wrongGuess));
                         wrongGuess++;
+                        countDown++;
+                        countDownTV.setText(countDown + "/" + maxWrongGuess);
                         Toast.makeText(PlayActivity.this, "antal fel" + wrongGuess, Toast.LENGTH_SHORT).show();
-
                     }
                 }
             });
@@ -124,8 +113,9 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     //Check if guessed letter is correct and replace underscore with correct letter.
-    public boolean replaceLetters() {
+    public boolean checkGuess() {
         boolean correctLetter = false;
+
         //Make correctly guessed letter replace underscore in correctWordTV
         for(int j=0; j<underscoredWordList.size(); j++){
 
@@ -133,7 +123,6 @@ public class PlayActivity extends AppCompatActivity {
                 underscoredWordList.set(j, guessedLetter);
                 correctWordTV.setText(TextUtils.join("", underscoredWordList));
                 correctLetter = true;
-                Toast.makeText(PlayActivity.this, "toast" + correctLetter, Toast.LENGTH_SHORT).show();
             }
         }
         return correctLetter;
