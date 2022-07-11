@@ -26,7 +26,8 @@ public class PlayActivity extends AppCompatActivity {
     private String selectedWord;
     private String underscoredWord;
     private char guessedLetter;
-    private int noOfFailure =7;
+    private int wrongGuess = 0;
+    private int maxWrongGuess =7;
     private boolean correctWord;
     private ArrayList<Character> rightWordList = new ArrayList<>();
     private ArrayList<Character> guessedLetters = new ArrayList<>();
@@ -97,13 +98,13 @@ public class PlayActivity extends AppCompatActivity {
 
     //Guess letters and put them to List of guessed letters
     public void guessLetters() {
-
         //Make keys clickable and clicked letters disappear from keyboard
         for (int i = 1; i < (keyboard.getChildCount()); i++) {
             TextView letterView = (TextView) keyboard.getChildAt(i);
             letterView.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick(View view) {
+
                     guessedLetter = letterView.getText().charAt(0);
                     letterView.setVisibility(View.GONE);
 
@@ -111,12 +112,15 @@ public class PlayActivity extends AppCompatActivity {
                     guessedLetters.add(guessedLetter);
                     guessedTV.setText(TextUtils.join(", ", guessedLetters));
                     if(!replaceLetters()) {
-                        animView.setImageResource(animList.get(0));
+
+                        animView.setImageResource(animList.get(wrongGuess));
+                        wrongGuess++;
+                        Toast.makeText(PlayActivity.this, "antal fel" + wrongGuess, Toast.LENGTH_SHORT).show();
+
                     }
                 }
             });
         }
-
     }
 
     //Check if guessed letter is correct and replace underscore with correct letter.
