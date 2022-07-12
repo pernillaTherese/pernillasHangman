@@ -8,13 +8,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="background_color">#204C52</color>
+    <color name="background_color">#28434A</color>
     <color name="key_color">#FFFFFFFF</color>
     <color name="mountain_light">#99CCCC</color>
     <color name="mountain_dark">#7FB8B8</color>
     <color name="sky_light">#EBEDFF</color>
     <color name="sky_medium">#E3E5F9</color>
     <color name="sky_dark">#CBD1FF</color>
+    <color name="wall_dark">#1A1A1A</color>
 
 
 </resources>

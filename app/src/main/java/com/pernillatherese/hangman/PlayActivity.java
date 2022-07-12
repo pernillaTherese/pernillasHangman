@@ -3,6 +3,7 @@ package com.pernillatherese.hangman;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -21,13 +22,14 @@ import java.util.Scanner;
 public class PlayActivity extends AppCompatActivity {
 
     //vars
+    private boolean winner;
     private int countDown = 0;
     private String selectedWord;
     private String underscoredWord;
+    private String finalWord;
     private char guessedLetter;
     private int wrongGuess = 0;
     private final int maxWrongGuess =7;
-    private boolean correctWord;
     private ArrayList<Character> guessedLetters = new ArrayList<>();
     private ArrayList<Character> underscoredWordList = new ArrayList<>();
 
@@ -46,11 +48,14 @@ public class PlayActivity extends AppCompatActivity {
     //views - buttons
     private ImageView animView;
     private TextView countDownTV;
-    private TextView correctWordTV;
-    private TextView guessedTV;
+    private TextView guessedWordTV;
+    private TextView guessedLettersTV;
+    private TextView resultTV;
+    private TextView resultCorrectWordTV;
     private Button newGameBtn;
     private ConstraintLayout keyboard;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,15 +64,17 @@ public class PlayActivity extends AppCompatActivity {
         //Find views - buttons
         animView = findViewById(R.id.anim_view);
         countDownTV = findViewById(R.id.countdown_txt);
-        correctWordTV = findViewById(R.id.correct_word_txt);
-        guessedTV = findViewById(R.id.guessed_letters_txt);
+        guessedWordTV = findViewById(R.id.guessed_word_txt);
+        guessedLettersTV = findViewById(R.id.guessed_letters_txt);
+        resultTV = findViewById(R.id.result_txt);
+        resultCorrectWordTV = findViewById(R.id.result_correct_word_txt);
         newGameBtn = findViewById(R.id.new_game_btn);
         keyboard = findViewById(R.id.letters_layout);
 
         //Set up game board
         randomWord();
-        correctWordTV.setText(underscoredWord);
-        countDownTV.setText(countDown + "/" + maxWrongGuess);
+        guessedWordTV.setText(underscoredWord);
+        countDownTV.setText(countDown + "/" + maxWrongGuess + " " + getString(R.string.incorrect_guesses));
         animView.setImageResource(R.drawable.play_background);
 
         //Start new game (recreate PlayActivity)
@@ -89,6 +96,7 @@ public class PlayActivity extends AppCompatActivity {
             TextView letterView = (TextView) keyboard.getChildAt(i);
             letterView.setOnClickListener(new View.OnClickListener() {
 
+                @SuppressLint("SetTextI18n")
                 public void onClick(View view) {
 
                     guessedLetter = letterView.getText().charAt(0);
@@ -96,17 +104,37 @@ public class PlayActivity extends AppCompatActivity {
 
                     //Make guessed letter add to guessedLetters TextView
                     guessedLetters.add(guessedLetter);
-                    guessedTV.setText(TextUtils.join(", ", guessedLetters));
+                    guessedLettersTV.setText(TextUtils.join(", ", guessedLetters));
 
                     //If guess is wrong
                     if(!checkGuess()) {
-
                         animView.setImageResource(animList.get(wrongGuess));
                         wrongGuess++;
                         countDown++;
-                        countDownTV.setText(countDown + "/" + maxWrongGuess);
-                        Toast.makeText(PlayActivity.this, "antal fel" + wrongGuess, Toast.LENGTH_SHORT).show();
+                        countDownTV.setText(countDown + "/" + maxWrongGuess + " " + getString(R.string.incorrect_guesses));
+                        //Toast.makeText(PlayActivity.this, "antal fel" + wrongGuess, Toast.LENGTH_SHORT).show();
                     }
+
+                    if((wrongGuess == maxWrongGuess) && (!winner)) {
+                        resultTV.setVisibility(View.VISIBLE);
+                        resultTV.setText(getString(R.string.looser));
+                        keyboard.setVisibility(View.INVISIBLE);
+                        guessedLettersTV.setVisibility(View.INVISIBLE);
+                        guessedWordTV.setVisibility(View.INVISIBLE);
+                        resultCorrectWordTV.setVisibility(View.VISIBLE);
+                        resultCorrectWordTV.setText(selectedWord.toUpperCase());
+                    }
+
+                    if(winner) {
+                        resultTV.setVisibility(View.VISIBLE);
+                        resultTV.setText(getString(R.string.winner));
+                        keyboard.setVisibility(View.INVISIBLE);
+                        guessedLettersTV.setVisibility(View.INVISIBLE);
+                        guessedWordTV.setVisibility(View.INVISIBLE);
+                        resultCorrectWordTV.setVisibility(View.VISIBLE);
+                        resultCorrectWordTV.setText(selectedWord.toUpperCase());
+                    }
+
                 }
             });
         }
@@ -121,9 +149,15 @@ public class PlayActivity extends AppCompatActivity {
 
             if (guessedLetter == selectedWord.toUpperCase().charAt(j)) {
                 underscoredWordList.set(j, guessedLetter);
-                correctWordTV.setText(TextUtils.join("", underscoredWordList));
+                guessedWordTV.setText(TextUtils.join("", underscoredWordList));
                 correctLetter = true;
             }
+            Toast.makeText(PlayActivity.this, selectedWord, Toast.LENGTH_SHORT).show();
+            finalWord = TextUtils.join("", underscoredWordList);
+            if (selectedWord.equalsIgnoreCase(finalWord)) {
+                winner = true;
+            }
+
         }
         return correctLetter;
     }
