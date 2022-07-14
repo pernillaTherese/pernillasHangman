@@ -26,12 +26,11 @@ public class PlayActivity extends AppCompatActivity {
     private int countDown = 0;
     private String selectedWord;
     private String underscoredWord;
-    private String finalWord;
     private char guessedLetter;
     private int wrongGuess = 0;
-    private final int maxWrongGuess =7;
-    private ArrayList<Character> guessedLetters = new ArrayList<>();
-    private ArrayList<Character> underscoredWordList = new ArrayList<>();
+    private final int maxWrongGuess =10;
+    private final ArrayList<Character> guessedLetters = new ArrayList<>();
+    private final ArrayList<Character> underscoredWordList = new ArrayList<>();
 
     //vars animations
     private final int anim_a = R.drawable.anim_a;
@@ -41,8 +40,11 @@ public class PlayActivity extends AppCompatActivity {
     private final int anim_e = R.drawable.anim_e;
     private final int anim_f = R.drawable.anim_f;
     private final int anim_g = R.drawable.anim_g;
+    private final int anim_h = R.drawable.anim_h;
+    private final int anim_i = R.drawable.anim_i;
+    private final int anim_j = R.drawable.anim_j;
     private final ArrayList<Integer> animList = new ArrayList<>(Arrays.asList
-            (anim_a, anim_b, anim_c,anim_d, anim_e, anim_f, anim_g));
+            (anim_a, anim_b, anim_c,anim_d, anim_e, anim_f, anim_g, anim_h, anim_i, anim_j));
 
 
     //views - buttons
@@ -78,11 +80,9 @@ public class PlayActivity extends AppCompatActivity {
         animView.setImageResource(R.drawable.play_background);
 
         //Start new game (recreate PlayActivity)
-        newGameBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), PlayActivity.class);
-                startActivity(intent);
-            }
+        newGameBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), PlayActivity.class);
+            startActivity(intent);
         });
 
         //Play game
@@ -90,52 +90,48 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     //Guess letters and put them to List of guessed letters
+    @SuppressLint("SetTextI18n")
     public void playGame() {
         //Make keys clickable and clicked letters disappear from keyboard
         for (int i = 1; i < (keyboard.getChildCount()); i++) {
             TextView letterView = (TextView) keyboard.getChildAt(i);
-            letterView.setOnClickListener(new View.OnClickListener() {
+            letterView.setOnClickListener(view -> {
 
-                @SuppressLint("SetTextI18n")
-                public void onClick(View view) {
+                guessedLetter = letterView.getText().charAt(0);
+                letterView.setVisibility(View.GONE);
 
-                    guessedLetter = letterView.getText().charAt(0);
-                    letterView.setVisibility(View.GONE);
+                //Make guessed letter add to guessedLetters TextView
+                guessedLetters.add(guessedLetter);
+                guessedLettersTV.setText(TextUtils.join(", ", guessedLetters));
 
-                    //Make guessed letter add to guessedLetters TextView
-                    guessedLetters.add(guessedLetter);
-                    guessedLettersTV.setText(TextUtils.join(", ", guessedLetters));
-
-                    //If guess is wrong
-                    if(!checkGuess()) {
-                        animView.setImageResource(animList.get(wrongGuess));
-                        wrongGuess++;
-                        countDown++;
-                        countDownTV.setText(countDown + "/" + maxWrongGuess + " " + getString(R.string.incorrect_guesses));
-                        //Toast.makeText(PlayActivity.this, "antal fel" + wrongGuess, Toast.LENGTH_SHORT).show();
-                    }
-
-                    if((wrongGuess == maxWrongGuess) && (!winner)) {
-                        resultTV.setVisibility(View.VISIBLE);
-                        resultTV.setText(getString(R.string.looser));
-                        keyboard.setVisibility(View.INVISIBLE);
-                        guessedLettersTV.setVisibility(View.INVISIBLE);
-                        guessedWordTV.setVisibility(View.INVISIBLE);
-                        resultCorrectWordTV.setVisibility(View.VISIBLE);
-                        resultCorrectWordTV.setText(selectedWord.toUpperCase());
-                    }
-
-                    if(winner) {
-                        resultTV.setVisibility(View.VISIBLE);
-                        resultTV.setText(getString(R.string.winner));
-                        keyboard.setVisibility(View.INVISIBLE);
-                        guessedLettersTV.setVisibility(View.INVISIBLE);
-                        guessedWordTV.setVisibility(View.INVISIBLE);
-                        resultCorrectWordTV.setVisibility(View.VISIBLE);
-                        resultCorrectWordTV.setText(selectedWord.toUpperCase());
-                    }
-
+                //If guess is wrong
+                if(!checkGuess()) {
+                    animView.setImageResource(animList.get(wrongGuess));
+                    wrongGuess++;
+                    countDown++;
+                    countDownTV.setText(countDown + "/" + maxWrongGuess + " " + getString(R.string.incorrect_guesses));
                 }
+
+                if((wrongGuess == maxWrongGuess) && (!winner)) {
+                    resultTV.setVisibility(View.VISIBLE);
+                    resultTV.setText(getString(R.string.looser));
+                    keyboard.setVisibility(View.INVISIBLE);
+                    guessedLettersTV.setVisibility(View.INVISIBLE);
+                    guessedWordTV.setVisibility(View.INVISIBLE);
+                    resultCorrectWordTV.setVisibility(View.VISIBLE);
+                    resultCorrectWordTV.setText(selectedWord.toUpperCase());
+                }
+
+                if(winner) {
+                    resultTV.setVisibility(View.VISIBLE);
+                    resultTV.setText(getString(R.string.winner));
+                    keyboard.setVisibility(View.INVISIBLE);
+                    guessedLettersTV.setVisibility(View.INVISIBLE);
+                    guessedWordTV.setVisibility(View.INVISIBLE);
+                    resultCorrectWordTV.setVisibility(View.VISIBLE);
+                    resultCorrectWordTV.setText(selectedWord.toUpperCase());
+                }
+
             });
         }
     }
@@ -152,8 +148,8 @@ public class PlayActivity extends AppCompatActivity {
                 guessedWordTV.setText(TextUtils.join("", underscoredWordList));
                 correctLetter = true;
             }
-            Toast.makeText(PlayActivity.this, selectedWord, Toast.LENGTH_SHORT).show();
-            finalWord = TextUtils.join("", underscoredWordList);
+            /*Toast.makeText(PlayActivity.this, selectedWord, Toast.LENGTH_SHORT).show();*/
+            String finalWord = TextUtils.join("", underscoredWordList);
             if (selectedWord.equalsIgnoreCase(finalWord)) {
                 winner = true;
             }
