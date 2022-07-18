@@ -53,6 +53,7 @@ public class PlayActivity extends AppCompatActivity {
     private TextView guessedWordTV;
     private TextView guessedLettersTV;
     private TextView resultTV;
+    private TextView correctMsgTV;
     private TextView resultCorrectWordTV;
     private Button newGameBtn;
     private ConstraintLayout keyboard;
@@ -69,6 +70,7 @@ public class PlayActivity extends AppCompatActivity {
         guessedWordTV = findViewById(R.id.guessed_word_txt);
         guessedLettersTV = findViewById(R.id.guessed_letters_txt);
         resultTV = findViewById(R.id.result_txt);
+        correctMsgTV = findViewById(R.id.correct_msg);
         resultCorrectWordTV = findViewById(R.id.result_correct_word_txt);
         newGameBtn = findViewById(R.id.new_game_btn);
         keyboard = findViewById(R.id.letters_layout);
@@ -76,6 +78,7 @@ public class PlayActivity extends AppCompatActivity {
         //Set up game board
         randomWord();
         guessedWordTV.setText(underscoredWord);
+        guessedLettersTV.setText(TextUtils.join(", ", guessedLetters));
         countDownTV.setText(countDown + "/" + maxWrongGuess + " " + getString(R.string.incorrect_guesses));
         animView.setImageResource(R.drawable.play_background);
 
@@ -112,6 +115,7 @@ public class PlayActivity extends AppCompatActivity {
                     countDownTV.setText(countDown + "/" + maxWrongGuess + " " + getString(R.string.incorrect_guesses));
                 }
 
+                //Loosing
                 if((wrongGuess == maxWrongGuess) && (!winner)) {
                     resultTV.setVisibility(View.VISIBLE);
                     resultTV.setText(getString(R.string.looser));
@@ -119,19 +123,22 @@ public class PlayActivity extends AppCompatActivity {
                     guessedLettersTV.setVisibility(View.INVISIBLE);
                     guessedWordTV.setVisibility(View.INVISIBLE);
                     resultCorrectWordTV.setVisibility(View.VISIBLE);
+                    correctMsgTV.setVisibility(View.VISIBLE);
                     resultCorrectWordTV.setText(selectedWord.toUpperCase());
                 }
 
+                //Winning
                 if(winner) {
+                    animView.setImageResource(R.drawable.anim_win);
                     resultTV.setVisibility(View.VISIBLE);
                     resultTV.setText(getString(R.string.winner));
                     keyboard.setVisibility(View.INVISIBLE);
                     guessedLettersTV.setVisibility(View.INVISIBLE);
                     guessedWordTV.setVisibility(View.INVISIBLE);
                     resultCorrectWordTV.setVisibility(View.VISIBLE);
+                    correctMsgTV.setVisibility(View.VISIBLE);
                     resultCorrectWordTV.setText(selectedWord.toUpperCase());
                 }
-
             });
         }
     }
@@ -148,7 +155,10 @@ public class PlayActivity extends AppCompatActivity {
                 guessedWordTV.setText(TextUtils.join("", underscoredWordList));
                 correctLetter = true;
             }
-            /*Toast.makeText(PlayActivity.this, selectedWord, Toast.LENGTH_SHORT).show();*/
+
+            /*Show correct word when testing*/
+            //Toast.makeText(PlayActivity.this, selectedWord, Toast.LENGTH_SHORT).show();
+
             String finalWord = TextUtils.join("", underscoredWordList);
             if (selectedWord.equalsIgnoreCase(finalWord)) {
                 winner = true;

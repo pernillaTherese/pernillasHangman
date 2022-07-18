@@ -1,22 +1,28 @@
 <resources>
 
     <!--Buttons-->
-    <string name="play_btn">SPELA</string>
-    <string name="info_btn">Om spelet</string>
-    <string name="guess_btn">GISSA</string>
+    <string name="play_btn">PLAY</string>
+    <string name="info_btn">About</string>
     <string name="new_game_btn">NEW GAME</string>
 
     <!--Textviews-->
     <string name="incorrect_guesses">incorrect guesses</string>
     <string name="looser">You\'re hanged!</string>
-    <string name="winner">You made it!</string>
+    <string name="winner">You solved it!</string>
+    <string name="correct_word_was">Correct word was:</string>
+
+    <!--Dummywords for layout, replaced by variables-->
+    <string name="guessed_word">GUESSED WORD</string>
+    <string name="guessed_letters">GUESSED LETTERS</string>
+    <string name="correct_word">CORRECT WORD</string>
 
     <!-- Strings used for fragments for navigation -->
+    <string name="app_name">Pernilla\'s Hangman</string>
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="app_name">Hangman</string>
+
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_play">PlayActivity</string>
 
