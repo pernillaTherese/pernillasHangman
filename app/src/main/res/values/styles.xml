@@ -23,6 +23,7 @@
         <item name="backgroundTint">@color/mountain_light</item>
         <item name="android:textColor">@color/background_color</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
 
     </style>
 

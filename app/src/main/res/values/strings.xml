@@ -16,6 +16,9 @@
     <string name="guessed_letters">GUESSED LETTERS</string>
     <string name="correct_word">CORRECT WORD</string>
 
+    <!--Image content-->
+    <string name="img_content_Begging_toon">Begging cartoon saying \'Save me, please\'</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="app_name">Pernilla\'s Hangman</string>
     <string name="first_fragment_label">First Fragment</string>
@@ -25,7 +28,6 @@
 
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_play">PlayActivity</string>
-
 
 
 

@@ -10,20 +10,22 @@
 
     <ImageView
         android:id="@+id/start_img"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="24dp" />
+        android:src="@drawable/start_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/img_content_Begging_toon" />
 
     <Button
         android:id="@+id/play_btn"
         android:text="@string/play_btn"
         style="@style/button_light"
+        android:background="@drawable/round_corners_shape"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
-        android:background="@drawable/round_corners_shape"
+
         android:layout_above="@id/about_btn"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"
@@ -32,22 +34,21 @@
 
     <Button
         android:id="@+id/about_btn"
-        android:text="@string/info_btn"
         style="@style/button_light"
-        android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="20dp"
+
+        android:layout_marginBottom="16dp"
         android:background="@drawable/round_corners_shape"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="48dp"
         android:clickable="true"
+        android:text="@string/info_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
     </Button>
-
-
 
 </RelativeLayout>
