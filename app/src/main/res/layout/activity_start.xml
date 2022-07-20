@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".StartActivity"
-    android:background="@color/background_color">
+    android:background="@color/phang_primary_variant">
 
     <ImageView
         android:id="@+id/start_img"
@@ -21,34 +21,16 @@
         android:text="@string/play_btn"
         style="@style/button_light"
         android:background="@drawable/round_corners_shape"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
-
-        android:layout_above="@id/about_btn"
+        android:layout_marginBottom="64dp"
         android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <Button
-        android:id="@+id/about_btn"
-        style="@style/button_light"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="20dp"
-
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/round_corners_shape"
-        android:clickable="true"
-        android:text="@string/info_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-    </Button>
 
 </RelativeLayout>

@@ -1,31 +1,27 @@
 package com.pernillatherese.hangman;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
-public class StartActivity extends AppCompatActivity {
+public class AboutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
+        setContentView(R.layout.activity_about);
+    }
 
-        // Go to play Activity
-        final Button playBtn = findViewById(R.id.play_btn);
-        playBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                goToPlayActivity();
-            }
-        });
+    @Override
+    public boolean onPrepareOptionsMenu(@NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        MenuItem item = menu.findItem(R.id.action_about);
+        item.setVisible(false);
+        return true;
     }
 
     @Override
@@ -37,10 +33,6 @@ public class StartActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_about: {
-                goToAboutActivity();
-                return true;
-            }
             case R.id.action_play: {
                 goToPlayActivity();
                 return true;
@@ -53,10 +45,6 @@ public class StartActivity extends AppCompatActivity {
 
     public void goToPlayActivity() {
         Intent intent = new Intent(getApplicationContext(), PlayActivity.class);
-        startActivity(intent);
-    }
-    public void goToAboutActivity() {
-        Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
         startActivity(intent);
     }
 }
