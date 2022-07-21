@@ -39,8 +39,8 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/anim_view">
-        </TextView>
+            app:layout_constraintBottom_toBottomOf="@id/anim_view"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -66,9 +66,7 @@
             app:layout_constraintBottom_toTopOf="@id/correct_msg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </TextView>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/correct_msg"
@@ -82,9 +80,7 @@
             app:layout_constraintBottom_toTopOf="@id/result_correct_word_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/result_txt">
-
-        </TextView>
+            app:layout_constraintTop_toBottomOf="@id/result_txt"/>
 
         <TextView
             android:id="@+id/result_correct_word_txt"
@@ -97,15 +93,13 @@
             app:layout_constraintBottom_toTopOf="@id/new_game_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/correct_msg"></TextView>
+            app:layout_constraintTop_toBottomOf="@id/correct_msg" />
 
         <TextView
             android:id="@+id/guessed_word_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginHorizontal="20dp"
             android:letterSpacing="0.2"
             android:text="@string/guessed_word"
             android:textAlignment="center"
@@ -115,31 +109,28 @@
             app:layout_constraintBottom_toTopOf="@id/guessed_letters_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></TextView>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/guessed_letters_txt"
-            style="@style/key_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="30dp"
-            android:padding="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:padding="8dp"
             android:text="@string/guessed_letters"
             android:textColor="@color/wall_dark"
             android:textSize="20sp"
+            android:textStyle="bold"
+            android:background="@color/sky_light"
             app:layout_constraintBottom_toTopOf="@id/letters_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guessed_word_txt"></TextView>
+            app:layout_constraintTop_toBottomOf="@id/guessed_word_txt" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/letters_layout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:padding="20dp"
             app:layout_constraintBottom_toTopOf="@id/new_game_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -147,12 +138,13 @@
 
             <androidx.constraintlayout.helper.widget.Flow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:constraint_referenced_ids="a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,ao,ae,oe"
                 app:flow_horizontalAlign="center"
                 app:flow_horizontalGap="5dp"
                 app:flow_verticalGap="5dp"
                 app:flow_wrapMode="aligned"
+                android:layout_marginHorizontal="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -339,14 +331,13 @@
             style="@style/button_light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginBottom="8dp"
             android:background="@drawable/round_corners_shape"
             android:text="@string/new_game_btn"
+            android:layout_marginHorizontal="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/letters_layout"></Button>
+            app:layout_constraintTop_toBottomOf="@id/letters_layout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
