@@ -16,8 +16,8 @@
     <color name="sky_dark">#CBD1FF</color>
     <color name="wall_dark">#1A1A1A</color>
 
-    <color name="phang_primary">#356767</color>
-    <color name="phang_primary_variant">#28434A</color>
+    <color name="p_hang_primary">#356767</color>
+    <color name="p_hang_primary_variant">#28434A</color>
 
 
 </resources>
