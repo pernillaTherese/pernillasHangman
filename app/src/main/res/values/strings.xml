@@ -36,7 +36,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--Long texts-->
-    <string name="about_app">ABOUT THIS APP:\nCreator: pernillaTherese\n\nThis game is made as a
+    <string name="about_app">ABOUT THIS APP:\n\nDeveloper: pernillaTherese\n\nThis game is made as a
         school assignment for ITHS Gothenburg in my first course; Android development.\n\nFeel free
         to fork and play around with the code. I will probably leave this project behind for now to
         continue my studies and move on to other projects.
