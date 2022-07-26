@@ -178,7 +178,7 @@ public class PlayActivity extends AppCompatActivity {
         ArrayList<String> words = new ArrayList<>();
 
         try {
-            Scanner sc = new Scanner(getAssets().open("myWordList_sv.txt"));
+            Scanner sc = new Scanner(getAssets().open("myWordList_eng.txt"));
 
             while (sc.hasNext()) {
                 words.add(sc.nextLine());
