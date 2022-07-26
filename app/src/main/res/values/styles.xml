@@ -3,47 +3,51 @@
     <style
         name="key_text"
         parent="Widget.AppCompat.Button">
-        <item name="android:layout_width">15dp</item>
-        <item name="android:layout_height">0dp</item>
-        <!--<item name="minWidth">15dp</item>
-        <item name="minHeight">15dp</item>
-        <item name="maxWidth">30dp</item>
-        <item name="maxHeight">30dp</item>-->
-        <item name="layout_constraintDimensionRatio">1:1</item>
+        <item name="android:layout_width">5mm</item>
+        <item name="android:layout_height">6mm</item>
+        <item name="android:padding">1mm</item>
         <item name="android:autoSizeTextType">uniform</item>
-        <!--<item name="autoSizeMaxTextSize">100sp</item>
-        <item name="autoSizeMinTextSize">2sp</item>-->
-        <item name="android:gravity">center</item>
         <item name="android:background">@color/sky_light</item>
-        <!--<item name="android:gravity">center</item>-->
-        <!--<item name="android:textAlignment">center</item>-->
         <item name="android:textColor">@color/p_hang_primary_variant</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textStyle">normal</item>
     </style>
 
     <style
         name="button_light"
         parent="Widget.AppCompat.Button">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingHorizontal">10dp</item>
-        <item name="cornerRadius">20dp</item>
         <item name="backgroundTint">@color/mountain_light</item>
         <item name="android:textColor">@color/p_hang_primary_variant</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">15sp</item>
-
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style
         name="button_dark"
         parent="Widget.AppCompat.Button">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="cornerRadius">20dp</item>
+        <item name="android:paddingHorizontal">10dp</item>
         <item name="backgroundTint">@color/mountain_dark</item>
         <item name="android:textColor">@color/p_hang_primary_variant</item>
         <item name="android:textStyle">bold</item>
+    </style>
 
+    <style name="body_text"
+        parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/p_hang_primary_variant</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginHorizontal">20dp</item>
+    </style>
+
+    <style name="link_text"
+        parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/p_hang_primary_variant</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginHorizontal">20dp</item>
     </style>
 </resources>

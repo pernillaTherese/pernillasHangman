@@ -3,7 +3,7 @@
     <!--Buttons-->
     <string name="play_btn">PLAY</string>
     <string name="info_btn">About</string>
-    <string name="new_game_btn">NEW GAME</string>
+    <string name="new_game_btn">PLAY AGAIN</string>
 
     <!--Textviews-->
     <string name="incorrect_guesses">incorrect guesses</string>
@@ -34,6 +34,36 @@
     <string name="title_activity_play">Play</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Long texts-->
+    <string name="about_app">ABOUT THIS APP:\nCreator: pernillaTherese\n\nThis game is made as a
+        school assignment for ITHS Gothenburg in my first course; Android development.\n\nFeel free
+        to fork and play around with the code. I will probably leave this project behind for now to
+        continue my studies and move on to other projects.
+    </string>
+
+    <string name="attribution_background">ATTRIBUTIONS:\n\nBackground illustration:\nFree vector image,
+        manipulated and animated by pernillaTherese.\nOriginal creator: sceneit
+    </string>
+
+    <string name="attribution_toon">Toon illustration:\nFree vector image, manipulated and animated
+        by pernillaTherese.\nOriginal creator: vecteezy.com
+    </string>
+
+    <string name="game_rules">Guess the letters for the word.\nEvery time the guessed letter matches
+        with a letter in the correct word, it will replace the dashes in the hint word on all places
+        where it occurs.\nIf the word does not contain the suggested letter, a bit of an image will
+        be drawn.\nAfter 10 incorrect guesses the image will be complete and you have lost.\nIf you
+        guess all correct letters and make the correct word before the image is complete, you have
+        won the game and saved the poor man from being hanged.
+    </string>
+
+    <!--Web Links-->
+    <string name="link_my_git"><b><a href="https://github.com/pernillaTherese/pernillasHangman.git/">github.com/pernillaTherese</a></b></string>
+    <string name="link_att_background"><b><a href="https://www.vecteezy.com/vector-art/167907-gallows-in-the-public-square/">
+        vecteezy.com/gallows in the public square</a></b></string>
+    <string name="link_att_toon"><b><a href="https://www.vecteezy.com/vector-art/2290119-set-of-different-doodle-kids-cartoon-character/">
+        vecteezy.com/set of different doodle kids cartoon character</a></b></string>
 
 
 </resources>

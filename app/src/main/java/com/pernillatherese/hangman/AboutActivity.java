@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.text.method.LinkMovementMethod;
+import android.graphics.Color;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -14,6 +17,16 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+
+        TextView myGitUrlView = findViewById(R.id.my_git_url);
+        myGitUrlView.setMovementMethod(LinkMovementMethod.getInstance());
+        /*myGitUrlView.setLinkTextColor(Color.BLACK);*/
+
+        TextView attBackgroundUrlView = findViewById(R.id.att_background_url);
+        attBackgroundUrlView.setMovementMethod(LinkMovementMethod.getInstance());
+
+        TextView attToonUrlView = findViewById(R.id.att_toon_url);
+        attToonUrlView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     @Override

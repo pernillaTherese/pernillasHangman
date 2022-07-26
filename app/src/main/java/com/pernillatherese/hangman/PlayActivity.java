@@ -127,6 +127,7 @@ public class PlayActivity extends AppCompatActivity {
                     resultCorrectWordTV.setVisibility(View.VISIBLE);
                     correctMsgTV.setVisibility(View.VISIBLE);
                     resultCorrectWordTV.setText(selectedWord.toUpperCase());
+                    newGameBtn.setVisibility((View.VISIBLE));
                 }
 
                 //Winning
@@ -139,6 +140,7 @@ public class PlayActivity extends AppCompatActivity {
                     guessedWordTV.setVisibility(View.INVISIBLE);
                     resultCorrectWordTV.setVisibility(View.VISIBLE);
                     correctMsgTV.setVisibility(View.VISIBLE);
+                    newGameBtn.setVisibility((View.VISIBLE));
                     resultCorrectWordTV.setText(selectedWord.toUpperCase());
                 }
             });
