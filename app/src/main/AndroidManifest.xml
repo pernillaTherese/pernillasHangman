@@ -10,12 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hangman">
         <activity
+            android:name=".RulesActivity"
+            android:exported="false"
+            android:label="@string/action_rules"/>
+        <activity
             android:name=".AboutActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/action_about"/>
         <activity
             android:name=".PlayActivity"
             android:exported="true"
-            android:label="@string/title_activity_play" />
+            android:label="@string/action_play" />
         <activity
             android:name=".StartActivity"
             android:exported="true">

@@ -324,18 +324,21 @@
             <TextView
                 android:id="@+id/ao"
                 style="@style/key_text"
+                android:visibility="invisible"
                 android:text="Å"
                 tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/ae"
                 style="@style/key_text"
+                android:visibility="invisible"
                 android:text="Ä"
                 tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/oe"
                 style="@style/key_text"
+                android:visibility="invisible"
                 android:text="Ö"
                 tools:ignore="HardcodedText" />
 

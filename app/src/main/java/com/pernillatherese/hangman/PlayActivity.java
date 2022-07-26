@@ -225,7 +225,9 @@ public class PlayActivity extends AppCompatActivity {
                 goToAboutActivity();
                 return true;
             }
-
+            case R.id.action_rules: {
+                gotToRulesActivity();
+            }
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -234,6 +236,10 @@ public class PlayActivity extends AppCompatActivity {
 
     public void goToAboutActivity() {
         Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
+        startActivity(intent);
+    }
+    public void gotToRulesActivity() {
+        Intent intent = new Intent(getApplicationContext(), RulesActivity.class);
         startActivity(intent);
     }
 

@@ -19,6 +19,7 @@
     <!--Actions-->
     <string name="action_about">About</string>
     <string name="action_play">Play</string>
+    <string name="action_rules">How to play</string>
 
     <!--Image content-->
     <string name="img_content_Begging_toon">Begging cartoon saying \'Save me, please\'</string>
@@ -29,11 +30,6 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
-    <string name="title_activity_test">TestActivity</string>
-    <string name="title_activity_play">Play</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--Long texts-->
     <string name="about_app">ABOUT THIS APP:\n\nDeveloper: pernillaTherese\n\nThis game is made as a

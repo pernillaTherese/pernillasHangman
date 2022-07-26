@@ -7,44 +7,48 @@
     tools:context=".AboutActivity"
     android:background="@color/key_color">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
     <TextView
         android:id="@+id/about_text"
         style="@style/body_text"
         android:text="@string/about_app"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_alignParentTop="true"/>
     <TextView
         android:id="@+id/my_git_url"
         style="@style/link_text"
         android:text="@string/link_my_git"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/about_text"/>
+        android:layout_below="@id/about_text"/>
 
     <TextView
         android:id="@+id/att_background_text"
         style="@style/body_text"
         android:layout_marginTop="30dp"
         android:text="@string/attribution_background"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/my_git_url"/>
+        android:layout_below="@+id/my_git_url"/>
     <TextView
         android:id="@+id/att_background_url"
         style="@style/link_text"
         android:text="@string/link_att_background"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/att_background_text"/>
+        android:layout_below="@+id/att_background_text"/>
 
     <TextView
         android:id="@+id/att_toon_text"
         style="@style/body_text"
         android:text="@string/attribution_toon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/att_background_url"/>
+        android:layout_below="@+id/att_background_url"/>
     <TextView
         android:id="@+id/att_toon_url"
         style="@style/link_text"
         android:text="@string/link_att_toon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/att_toon_text"/>
-
+        android:layout_below="@+id/att_toon_text"/>
+        </RelativeLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

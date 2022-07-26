@@ -50,6 +50,9 @@ public class AboutActivity extends AppCompatActivity {
                 goToPlayActivity();
                 return true;
             }
+            case R.id.action_rules: {
+                gotToRulesActivity();
+            }
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -58,6 +61,10 @@ public class AboutActivity extends AppCompatActivity {
 
     public void goToPlayActivity() {
         Intent intent = new Intent(getApplicationContext(), PlayActivity.class);
+        startActivity(intent);
+    }
+    public void gotToRulesActivity() {
+        Intent intent = new Intent(getApplicationContext(), RulesActivity.class);
         startActivity(intent);
     }
 }
