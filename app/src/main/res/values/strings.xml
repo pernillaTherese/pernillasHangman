@@ -46,12 +46,13 @@
         by pernillaTherese.\nOriginal creator: vecteezy.com
     </string>
 
-    <string name="game_rules">Guess the letters for the word.\nEvery time the guessed letter matches
-        with a letter in the correct word, it will replace the dashes in the hint word on all places
-        where it occurs.\nIf the word does not contain the suggested letter, a bit of an image will
-        be drawn.\nAfter 10 incorrect guesses the image will be complete and you have lost.\nIf you
-        guess all correct letters and make the correct word before the image is complete, you have
-        won the game and saved the poor man from being hanged.
+    <string name="game_rules">GAME RULES:\n\nThe game will come up with a random word and display it
+        with dashes.Your job is to guess which word that is.\n\nYou will get to guess one letter
+        at a time and every time the guessed letter matches with a letter in the correct word, it
+        will replace the dashes on all places where it occurs.\n\nIf the word does
+        not contain the suggested letter, a piece of an image will be drawn.\n\nIf you guess all correct
+        letters and make the correct word before the image is complete, you have won the game.\n\nIf
+        you do not make up the correct word before the image is complete you will lose.
     </string>
 
     <!--Web Links-->

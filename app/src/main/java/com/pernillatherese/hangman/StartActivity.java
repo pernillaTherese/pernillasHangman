@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.Objects;
+
 public class StartActivity extends AppCompatActivity {
 
     @Override
