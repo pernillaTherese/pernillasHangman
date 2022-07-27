@@ -1,6 +1,6 @@
 # pernillasHangman
 This game is made as a school assignment for ITHS Gothenburg in my first course; Android development.
-Feel free to fork and play around with the code. I will probably leave this project behind for now to
+I will probably leave this project behind for now to
 continue my studies and move on to other projects.
 
 ### ATTRIBUTIONS:
